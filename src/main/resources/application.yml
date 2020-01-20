@@ -1,0 +1,6 @@
+micronaut:
+  metrics:
+    enabled: true
+endpoints:
+  all:
+    sensitive: false
