@@ -3,14 +3,18 @@ package org.example.micronaut_demo.service;
 import io.micronaut.core.util.StringUtils;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
 public class HelloService {
 
+    @Inject
+    AppNameService appNameService;
+
     @Nonnull
     public String introduction() {
-        return "Hello, this is a demo Micronaut application!";
+        return "Hello, I am " + appNameService.getAppName() + ", and this is a demo Micronaut application!";
     }
 
     @Nonnull

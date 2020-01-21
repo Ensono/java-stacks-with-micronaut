@@ -16,11 +16,10 @@ public class HelloController {
     @Inject
     HelloService helloService;
 
+    // by default, controllers produce JSON
     @Get("/hello/{name}")
     public Collection<String> hello(@PathVariable @NotNull final String name) {
         return List.of(helloService.introduction(), helloService.hello(name));
     }
-
-
 
 }

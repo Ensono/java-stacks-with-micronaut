@@ -18,27 +18,41 @@
         <exec.mainClass>org.example.micronaut_demo.MicronautDemo</exec.mainClass>
         <micronaut.version>1.3.0.M2</micronaut.version>
         <lombok.version>1.18.10</lombok.version>
+        <junit.jupiter.version>5.6.0</junit.jupiter.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.micronaut</groupId>
+                <artifactId>micronaut-bom</artifactId>
+                <version>${micronaut.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <!--MICRONAUT DEPENDENCIES-->
         <!-- the runtime-->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-runtime</artifactId>
-            <version>${micronaut.version}</version>
         </dependency>
         <!--IoC container-->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-inject</artifactId>
-            <version>${micronaut.version}</version>
+        </dependency>
+        <!--HTTP Client-->
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-http-client</artifactId>
         </dependency>
         <!--endpoints-->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-management</artifactId>
-            <version>${micronaut.version}</version>
         </dependency>
         <!--metrics-->
         <dependency>
@@ -56,13 +70,12 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-server-netty</artifactId>
-            <version>${micronaut.version}</version>
         </dependency>
 
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
+            <!--            <version>1.3.2</version>-->
         </dependency>
 
         <!--OTHER DEPENDENCIES-->
@@ -76,6 +89,35 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+
+        <!--Test dependencies-->
+        <dependency>
+            <groupId>io.micronaut.test</groupId>
+            <artifactId>micronaut-test-junit5</artifactId>
+            <version>1.1.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>3.2.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -115,7 +157,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <!--                            <minimizeJar>true</minimizeJar>-->
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <transformers>
                                 <transformer
@@ -129,6 +170,26 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Testing-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <dependencies>
+                    <!--                    <dependency>-->
+                    <!--                        <groupId>org.junit.platform</groupId>-->
+                    <!--                        <artifactId>junit-platform-surefire-provider</artifactId>-->
+                    <!--                        <version>1.3.2</version>-->
+                    <!--                    </dependency>-->
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>${junit.jupiter.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
         </plugins>
     </build>
 

@@ -93,5 +93,30 @@ Micronaut HTTP clients and client filters can now be matched by the presence of 
 
 ## The comparison application
 This repository contains a demo application created with Micronaut. The main goal of it is to highlight similarities and differences between Micronaut and Spring Boot in the most common scenarios.
+
 ## Pros
+
+- Created with Spring Boot developers in mind
+- Shares a good portion of Spring Boot's annotations
+- Provides a new IoC container using compile-time preprocessor to generate code instead of using reflection and proxies
+- Built-in support for Spring Boot configuration
+- Built-in support for externalised configuration: EC2, Google Compute, Kubernetes, Heroku, Cloud Foundry, Azure, IBM, Digital Ocean, Oracle Cloud
+- Built-in service discovery: Consul, Eureka, Kubernetes, AWS Route 53, Manual
+- Client-side load-balancing (+Netflix Ribbon)
+- Function applications and beans (Amazon Lambda or similar)
+- Support for message-driven microservices (Kafka, RabbitMQ)
+- Connectors for common data access solutions
+- IntelliJ IDEA plugin
+- Refreshable beans
+- Multi-tenancy
+- Out-of-the-box endpoints (health, info, metrics, routes, caches etc.)
+- Support for AOP
+- Support for Netlix Hystrix
+- Robust HTTP Server and Client with reactive support
+- Support for JUnit5 + Spock
+- Java/Groovy/Kotlin friendly
+
 ## Cons
+
+- The framework is still relatively new, so there is still small community
+- Not as many integrations as in Spring Boot (but increasing)
